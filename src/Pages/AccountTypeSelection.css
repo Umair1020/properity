@@ -1,0 +1,97 @@
+/* AccountTypeSelection.css */
+.account-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f7fafc;
+  }
+  
+  .account-button {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .account-button:hover {
+    opacity: 0.9;
+  }
+  
+  .property-search-button {
+    background-color: #3b82f6; /* Blue */
+  }
+  
+  .shatering-button {
+    background-color: #10b981; /* Green */
+  }
+  
+  .ovs-button {
+    background-color: #8b5cf6; /* Purple */
+  }
+  
+  .form-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1e293b;
+  }
+
+  /* AccountTypeSelection.css */
+.email-confirmation-box {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .email-confirmation-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .email-confirmation-box p {
+    font-size: 16px;
+    color: #4b5563;
+  }
+  
+  .confirm-button {
+    padding: 10px 20px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .confirm-button:hover {
+    background-color: #2563eb;
+  }
+  
+  .error-message {
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 10px;
+  }

@@ -1,0 +1,28 @@
+/* AccountInfo.css */
+.account-info-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .account-info-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1e293b;
+  }
+  
+  .account-info-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .account-info-details p {
+    margin: 0;
+    font-size: 16px;
+    color: #4b5563;
+  }
