@@ -12082,8 +12082,8 @@ text-align: center;
   gap: 0.5rem;
 }
 
-.input-box label {
-
+.input-box p {
+text-align: center;
   color: #FF5724;
 
 font-family: Roundkey;
@@ -12096,17 +12096,17 @@ text-decoration-skip-ink: none;
 
 }
 
-.input-box input {
+.input-box button {
   padding: 1rem;
   border: 1px solid #FF5724;
   border-radius: 8px;
   font-size: 1rem;
-  color: #2d3436;
+  color: #898989;
   background: #f8f9fa;
   transition: all 0.3s ease;
 }
 
-.input-box input:focus {
+.input-box button:focus {
   outline: none;
   border-color: #6c5ce7;
   box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);

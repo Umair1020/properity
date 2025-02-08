@@ -11,8 +11,11 @@ const AccountTypeSelection = () => {
     phone: "",
     accountType: "",
   });
+  const [isEmailSent, setIsEmailSent] = useState(false); // Email confirmation state
+  const [error, setError] = useState(""); // Error state
   const navigate = useNavigate();
 
+  // Account type select karne ke liye
   const handleAccountSelect = (accountType) => {
     setSelectedAccount(accountType);
     setFormData({ ...formData, accountType });
@@ -42,7 +45,30 @@ const AccountTypeSelection = () => {
         alert(result.error); // "Account creation failed."
       }
     } catch (error) {
-      console.error("Account creation failed:", error);
+      setError("An error occurred. Please try again.");
+    }
+  };
+  
+
+  // Email confirmation send karne ke liye
+  const handleEmailConfirmation = async () => {
+    try {
+      // API call to send confirmation email
+      const response = await fetch("http://localhost:3005/api/send-confirmation-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: formData.email }),
+      });
+
+      if (response.ok) {
+        navigate("/home"); // Success hone par home page par redirect
+      } else {
+        setError("Failed to send confirmation email. Please try again.");
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
     }
   };
 

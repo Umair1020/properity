@@ -1,25 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 const API_BASE_URL = "https://forestgreen-rail-905681.hostingersite.com/api";
+
 const HomePage = () => {
   const [firstName, setFirstName] = useState("");
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState("");
   const navigate = useNavigate();
-  const fetchUserDetails = async (token) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/user`, {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setUser(data);
-      }
-    } catch (error) {
-      console.error("Error fetching user details.");
-    }
-  };
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -41,6 +28,7 @@ const HomePage = () => {
 
     fetchUser();
   }, []);
+
   return (
     <div className="main-container main">
       <div className="content-wrapper">
@@ -49,74 +37,43 @@ const HomePage = () => {
           <h1>Welcome, {firstName}</h1>
         </div>
 
-        {/* Input Fields Section */}
+        {/* Buttons Section */}
         <div className="input-container">
           <div className="input-box">
-            {/* <label htmlFor="searchProperty">Search Property</label> */}
-            <input
-              type="text"
-              className='text-center'
-              id="searchProperty"
-              placeholder="Search Property "
-            />
+            <button className="btn d-flex align-items-center text-center justify-content-center" onClick={() => navigate("/search-property")}> 
+           Search Property     <FaSearch className="ml-3" />
+            </button>
           </div>
           <div className="input-box">
-            <label htmlFor="Credits" className='text-center fs-2 label'>Credits ?</label>
-            <input
-              type="text"
-              className='text-center'
-              id="drafts"
-              placeholder="Buy More Search Credits ?"
-            />
+            <p className="text-center">Credits ?</p>
+            <button className="btn" onClick={() => navigate("/buy-credits")}>
+            Buy More Search Credits ?
+            </button>
           </div>
           <div className="input-box">
-            {/* <label htmlFor="drafts">Drafts</label> */}
-            <input
-              type="text"
-              className='text-center'
-              id="drafts"
-              placeholder="Check your drafts"
-            />
+            <button className="btn" onClick={() => navigate("/drafts")}>
+            See Invoices
+            </button>
           </div>
-
           <div className="input-box">
-            {/* <label htmlFor="accountInfo">See Account Information</label> */}
-            <input
-              type="text"
-              className='text-center'
-              id="accountInfo"
-              placeholder="View account details"
-            />
+            <button className="btn" onClick={() => navigate("/account-details")}>
+              View Account Details
+            </button>
           </div>
-
           <div className="input-box">
-            {/* <label htmlFor="architectsReview">See Architects Review</label> */}
-            <input
-              type="text"
-              className='text-center'
-              id="architectsReview"
-              placeholder="Review architects"
-            />
+            <button className="btn" onClick={() => navigate("/architects-review")}>
+              Review Architects
+            </button>
           </div>
-
           <div className="input-box">
-            {/* <label htmlFor="pastSearches">See Past Searches</label> */}
-            <input
-              type="text"
-              className='text-center'
-              id="pastSearches"
-              placeholder="View past searches"
-            />
+            <button className="btn" onClick={() => navigate("/past-searches")}>
+              View Past Searches
+            </button>
           </div>
-
           <div className="input-box">
-            {/* <label htmlFor="compareSearches">Compare Searches</label> */}
-            <input
-              type="text"
-              className='text-center'
-              id="compareSearches"
-              placeholder="Compare search results"
-            />
+            <button className="btn" onClick={() => navigate("/compare-searches")}>
+              Compare Search Results
+            </button>
           </div>
         </div>
       </div>
