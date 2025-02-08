@@ -12033,6 +12033,8 @@ easymde/dist/easymde.min.css:
   background: url(/public/flat-lay-drawing-with-colorful-lines\ 1@2x.png);
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  max-width: 100%;
 }
 /* HomePage.css */
 .main-container {
