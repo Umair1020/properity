@@ -1,7 +1,6 @@
-// AccountTypeSelection.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Header from "../components/Header";
 
 const AccountTypeSelection = () => {
   const [selectedAccount, setSelectedAccount] = useState(null);
@@ -10,28 +9,37 @@ const AccountTypeSelection = () => {
     email: "",
     password: "",
     phone: "",
-    accountType: ""
+    accountType: "",
   });
   const navigate = useNavigate();
 
   const handleAccountSelect = (accountType) => {
     setSelectedAccount(accountType);
-    setFormData({...formData, accountType});
+    setFormData({ ...formData, accountType });
+    navigate("/register")
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/create-account", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      if(response.ok) {
-        navigate("/home");
+      const response = await fetch(
+        "http://spotcommglobal.com/backend/create-account",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const result = await response.json();
+      if (response.ok) {
+        alert(
+          result.message
+        ); /* "Account created successfully. Please check your email to confirm your account." */
+      } else {
+        alert(result.error); // "Account creation failed."
       }
     } catch (error) {
       console.error("Account creation failed:", error);
@@ -39,76 +47,36 @@ const AccountTypeSelection = () => {
   };
 
   return (
-    <div className="account-selection-container">
-      {!selectedAccount ? (
-        <div className="space-y-4">
-          <button 
-            onClick={() => handleAccountSelect("Property Search Client")}
-            className="account-button property-search-button"
-          >
-            Property Search Client
-          </button>
-          
-          <button
-            onClick={() => handleAccountSelect("Shatering Account")}
-            className="account-button shatering-button" disabled
-          >
-            Shatering Account
-          </button>
+    <>
+      <div className="account-selection-container main">
 
-          <button
-            onClick={() => handleAccountSelect("OVS Client Account")}
-            className="account-button ovs-button" disabled
-          >
-            OVS Client Account
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="form-container">
-          <h2 className="form-title">Create {selectedAccount}</h2>
-          
-          <div className="space-y-4">
-            <input
-              type="text"
-              placeholder="Full Name"
-              required
-              className="form-input"
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
-            />
+          <>
+            <button
+              onClick={() => handleAccountSelect("Property Search Client")}
+              className="account-button property-search-button"
+            >
+              Property Search Client
+            </button>
 
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              className="form-input"
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
-            />
-
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              className="form-input"
-              onChange={(e) => setFormData({...formData, password: e.target.value})}
-            />
-
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className="form-input"
-              onChange={(e) => setFormData({...formData, phone: e.target.value})}
-            />
+            {/* <button
+              onClick={() => handleAccountSelect("Shatering Account")}
+              className="account-button shatering-button"
+              disabled
+            >
+              Shatering Account
+            </button>
 
             <button
-              type="submit"
-              className="submit-button"
+              onClick={() => handleAccountSelect("OVS Client Account")}
+              className="account-button ovs-button"
+              disabled
             >
-              Create Account
-            </button>
-          </div>
-        </form>
-      )}
-    </div>
+              OVS Client Account
+            </button> */}
+          </>
+       
+      </div>
+    </>
   );
 };
 
