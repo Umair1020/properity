@@ -15,25 +15,28 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
+        const response = await fetch(`${API_BASE_URL}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+        });
+        const data = await response.json();
 
-      console.log("Login Response:", data); // Debugging Response
+        console.log("Login Response:", data);
 
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-        setUser(data.user); // Store user info
-      } else {
-        setError(data.message || "Invalid email or password.");
-      }
+        if (response.ok) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user)); // ✅ Store user data
+            setUser(data.user);
+            navigate("/welcome");
+        } else {
+            setError(data.message || "Invalid email or password.");
+        }
     } catch (error) {
-      setError("An error occurred during login.");
+        setError("An error occurred during login.");
     }
-  };
+};
+
 
   useEffect(() => {
     if (user) {
